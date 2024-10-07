@@ -4,20 +4,14 @@ const jwt = require("jsonwebtoken");
 
 
 const app = express();
+const userRouter = require("./routes/userRouter")
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+app.use("/users", userRouter)
 
-
-app.get(("/"), (req, res) => {
-  res.json("sending best wishes")
-});
-
-app.post(("/"), (req, res) => {
-    res.json({"text": "hello"})
-})
 
 
 
