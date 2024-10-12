@@ -6,10 +6,8 @@ async function createUser(req, res) {
     await db.createQueries.createUser(newUser = {
       username: req.body.username,
       password: req.body.password
-    }); 
-    res.status(200).json("new user created succesfully")
-
-    
+    });
+    res.status(201).json({ user: newUser })
   } catch (error) {
     console.log(error)
   }
@@ -28,11 +26,25 @@ async function retrieveUserById(req, res) {
   try {
     const userId = Number(req.params.userId)
     const fetchedUser = await db.readQueries.getUserById(userId);
-    res.status(200).json(fetchedUser);   
+    if(!fetchedUser) {
+      res.status(404).json("user does not exist")
+    }
+    res.status(200).json({ user: fetchedUser });   
   } catch (error) {
-    console.log(error)
+    console.log("Internal server error",error)
   }
 }   
+
+async function deleteUser(req, res) {
+  try {
+    const userId = Number(req.params.userId)
+    await db.deleteQueries.deleteUser(userId);
+    res.status(200).json(`user with id ${userId} deleted`)
+  } catch (error) {
+    console.log("Internal server error", error)
+  }
+  
+}
 
 
 
@@ -46,4 +58,5 @@ module.exports = {
     createUser,
     retrieveAllUsers,
     retrieveUserById,
+    deleteUser,
 }
