@@ -16,6 +16,21 @@ const createQueries = {
     } catch (error) {
       console.log(error)
     }
+  },
+
+  async createPost(post) {
+    try {
+      const { title, content } = post;
+      await prisma.post.create({
+        data: {
+          title,
+          content,
+          userId
+        }
+      })
+    } catch (error) {
+      
+    }
   }
 
 }
@@ -41,13 +56,34 @@ const readQueries = {
     } catch (error) {
       console.log(error)
     }
-  }
+  },
 
-}   
+  async getAllPosts() {
+    try {
+      return await prisma.post.findMany()
+    } catch (error) {
+      console.log( 'Error fetching all posts', error)
+    }
+  },
+
+}
+
+const deleteQueries = {
+
+  async deleteUser(userId) {
+    await prisma.user.delete({
+      where: {
+        id: userId
+      }
+    })
+  }
+  
+}
 
 
 
 module.exports = {
     createQueries,
     readQueries,
+    deleteQueries,
 }
