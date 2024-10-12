@@ -1,16 +1,22 @@
 require("dotenv").config();
 const express = require("express");
-const jwt = require("jsonwebtoken");
 
 
 const app = express();
-const userRouter = require("./routes/userRouter")
+const userRouter = require("./routes/userRouter");
+const postRouter = require("./routes/postRouter");
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
-app.use("/users", userRouter)
+
+app.post("/login", (req, res) => {
+    jwt.sign()
+})
+app.use("/users", userRouter);
+app.use("/posts", postRouter);
+
 
 
 
