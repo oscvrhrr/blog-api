@@ -4,9 +4,11 @@ const db = require("../db/queries")
 async function createUser(req, res) {
   try {
     await db.createQueries.createUser(newUser = {
-      username: req.body.username,
+      fullname: req.body.fullname,
+      email: req.body.email,
       password: req.body.password
     });
+    console.log(newUser);
     res.status(201).json({ user: newUser })
   } catch (error) {
     console.log(error)
