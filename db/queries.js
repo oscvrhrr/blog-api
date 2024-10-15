@@ -6,10 +6,11 @@ const createQueries = {
 
   async createUser(newUser) {
     try {
-      const { username, password } = newUser
+      const { fullname, email, password } = newUser
       await prisma.user.create({
         data: {
-          username,
+          fullname,
+          email,
           password
         }
       })
@@ -86,4 +87,5 @@ module.exports = {
     createQueries,
     readQueries,
     deleteQueries,
+    prisma
 }
