@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
+import { PrivateRoutes } from "./utils/ProtectedRoutes"
 import Landing from "./pages/Landing"
-// import Login from "./pages/login"
+import Dashboard from "./pages/Dashboard"
 
 
 function App() {
@@ -8,9 +9,10 @@ function App() {
   return (
     <>
       <Routes>
+        <Route element={ <PrivateRoutes/> }>
+          <Route path="/dashboard"  element={ <Dashboard/> } />
+        </Route>
         <Route path="/" element={ <Landing/> }/>
-
-
       </Routes>
     </>
   )
