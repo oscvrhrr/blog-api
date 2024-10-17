@@ -2,6 +2,7 @@
 import LoginForm from "../components/LoginForm"
 import NavBar from "../components/navbar"  
 import RegisterForm from "../components/RegisterForm"
+import Hero from "../components/Hero"
 import { useState } from "react"                       
 
 export default function Landing () {
@@ -37,6 +38,7 @@ export default function Landing () {
         <>
           <main className="bg-[#F7F9FF] h-screen">
            <NavBar onLoginClick={ openLoginActive } onRegisterClick={openRegisterForm}/>
+           <Hero/>
            { isRegisterActive && <RegisterForm onToggleClick={ closeRegisterFrom }/> }
            
            { isLoginActive && <LoginForm onToggleClick={ closeLoginActive }/>}
