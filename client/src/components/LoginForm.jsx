@@ -44,8 +44,9 @@ export default function LoginForm ({ onToggleClick }) {
 
     return (
         <>
-          <h1 className="text-center text-xl m-10">Log in</h1>
-          <Form.Root onSubmit={ handleLogin } className="w-[320px] h-[25rem]  bg-radixblue-100 mx-auto border rounded-xl p-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+          <Form.Root onSubmit={ handleLogin } className="w-[320px] h-[25rem]  bg-radixblue-100 mx-auto border rounded-xl p-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <h1 className="text-center text-xl">Log in</h1>
             <div className="flex justify-end">
                 <Toggle.Root onClick={ onToggleClick } className="flex size-[35px] items-center justify-center rounded bg-white leading-4 text-mauve11  hover:border focus:shadow-[0_0_0_2px] focus:shadow-black data-[state=on]:bg-violet6 data-[state=on]:text-violet12">
                     <Cross1Icon/>
@@ -61,6 +62,7 @@ export default function LoginForm ({ onToggleClick }) {
             </Form.Field>
             <Form.Submit className="mt-2.5 box-border inline-flex h-[35px] w-full items-center justify-center rounded text-white bg-radixblue-900 hover:bg-radixblue-1000">Log in</Form.Submit>
           </Form.Root>
+          </div>
         </>
     )
 }
