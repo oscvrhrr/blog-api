@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
+const key = import.meta.env.VITE_TINY_APIKEY
 
 export default function Createpost() {
     const editorRef = useRef(null);
@@ -16,7 +16,7 @@ export default function Createpost() {
           <div className="flex items-center flex-col">
             <Editor
 
-            apiKey='c8xxl9x6yfj15w7kpckhxf1wyfg958l7mxg2zffmze8e875s'
+            apiKey={ key }
             onInit={(_evt, editor) => editorRef.current = editor}
             init={{
             height: 400,
