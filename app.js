@@ -21,6 +21,10 @@ app.post("/login", passport.authenticate('local', { session: false }), (req, res
 })
 
 
+app.get("/user", passport.authenticate('jwt', { session: false}), (req, res) => {
+    res.json(req.user)
+});
+
 app.use("/users", passport.authenticate('jwt', { session: false }), userRouter);
 app.use("/posts", passport.authenticate('jwt', { session: false }), postRouter);
 
