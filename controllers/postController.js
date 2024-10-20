@@ -1,6 +1,17 @@
 const db = require("../db/queries");
 
 
+async function retrievePostById(req, res) {
+  try {
+    const postId = Number(req.params.postId)
+    const post = await db.readQueries.getPostById(postId);
+    res.json(post);
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+
 async function retrieveAllPosts(req, res) {
   try {
     const allPosts = await db.readQueries.getAllPosts();
@@ -30,5 +41,5 @@ async function retrieveAllPosts(req, res) {
 module.exports = {
     // createPost,
     retrieveAllPosts,
-    
+    retrievePostById,
 }
