@@ -1,5 +1,5 @@
 const Router = require("express")
-const { createUser, retrieveAllUsers, retrieveUserById, deleteUser } = require("../controllers/userContoller")
+const { createUser, retrieveAllUsers, retrieveUserById, retrieveUserPosts, deleteUser } = require("../controllers/userContoller")
 
 const userRouter = Router();
 
@@ -9,11 +9,13 @@ const userRouter = Router();
 
 userRouter.get(("/"), retrieveAllUsers);
 
-userRouter.post(("/"), createUser);
+// userRouter.post(("/"), createUser);
 
-userRouter.get(("/:userId"), retrieveUserById);
+// userRouter.get(("/:userId"), retrieveUserById);
 
-userRouter.delete(("/:userId"), deleteUser);
+// userRouter.delete(("/:userId"), deleteUser);
+
+userRouter.get(("/:userId/posts"), retrieveUserPosts)
 
 
 
