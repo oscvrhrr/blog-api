@@ -1,4 +1,4 @@
-const db = require("../db/queries")
+const db = require("../db/queries");
 
 
 async function createUser(req, res) {
@@ -37,6 +37,16 @@ async function retrieveUserById(req, res) {
   }
 }   
 
+async function retrieveUserPosts(req, res) {
+  try {
+    const userId = Number(req.params.userId)
+    const posts = await db.readQueries.getUsersPost(userId)
+    res.status(200).json(posts)
+  } catch (error) {
+    console.log("error fetching user post", error)
+  }
+}
+
 async function deleteUser(req, res) {
   try {
     const userId = Number(req.params.userId)
@@ -60,5 +70,6 @@ module.exports = {
     createUser,
     retrieveAllUsers,
     retrieveUserById,
+    retrieveUserPosts,
     deleteUser,
 }
