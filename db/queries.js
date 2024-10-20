@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client")
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 
@@ -64,6 +64,32 @@ const readQueries = {
       return await prisma.post.findMany()
     } catch (error) {
       console.log( 'Error fetching all posts', error)
+    }
+  },
+
+  async getUsersPost(userId) {
+    try {
+        return  await prisma.post.findMany({
+        where: {
+          userId
+        }
+      })
+    } catch (error) {
+      console.log("error fetching user posts", error)
+    }
+  },
+
+  async getPostById(postId) {
+    try {
+      return await prisma.post.findFirst({
+        where: {
+          id: postId
+        }
+      })
+
+
+    } catch (error) {
+      console.log("error fetching post by id",error)
     }
   },
 
