@@ -8,7 +8,7 @@ export default function Hero() {
           <header className="flex w-full">
             <aside className="w-1/2 border-b flex flex-col justify-center items-start px-10">
               <h1 className="text-3xl font-semibold">
-                Hello welcome to Full-stack developer blog
+                Hello welcome to my Full-stack developer blog
               </h1>
               <p className="text-sm mb-4">
                Topics I will write about are tech, productivity, and whatever else is lingering in my mind
