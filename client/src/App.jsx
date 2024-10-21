@@ -18,9 +18,9 @@ function App() {
         >
           <Route path="/dashboard"  element={ <Dashboard/> }/>
           <Route path="/createpost" element={ <Createpost/> }/>
-          <Route path="/postdetail/:postId" element={ <PostDetail/>}/>
         </Route>
         <Route path="/" element={ <Landing/> }/>
+        <Route path="/postdetail/:postId" element={ <PostDetail/>}/>
       </Routes>
     </>
   )
