@@ -1,6 +1,6 @@
 const Router = require("express");
 
-const { retrieveAllPosts, retrievePostById } = require("../controllers/postController")
+const { createPost, retrieveAllPosts, retrievePostById } = require("../controllers/postController")
 
 const postRouter = Router();
 
@@ -9,7 +9,7 @@ const postRouter = Router();
 
 postRouter.get(("/"), retrieveAllPosts);
 
-// postRouter.post(("/"), createPost);
+postRouter.post(("/"), createPost);
 
 postRouter.get(("/:postId"), retrievePostById);
 
