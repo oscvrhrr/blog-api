@@ -3,11 +3,11 @@ import { Box, Inset, Text, Strong, Card, Flex  } from "@radix-ui/themes"
 
 
 
-export default function Post({title, content}) {
+export default function Post({title, content, datePosted }) {
     return (
         <>
           <Flex justify={'center'}>
-            <Box  maxWidth="240px">
+            <Box  maxWidth="240px" className="hover:transition ease-in hover:-translate-y-1 hover:scale-105 duration-300">
               <Card size="2">
                 <Inset clip="padding-box" side="top" pb="current">
                   <img
@@ -23,7 +23,9 @@ export default function Post({title, content}) {
                   />
                 </Inset>
                 <Text as="p" size="3">
-                <Strong>{title}</Strong> {content}
+                <p className="bg-radixblue-600 rounded px-2 py-1">{datePosted}</p>
+                <Strong>{title}</Strong>
+                <div dangerouslySetInnerHTML={{ __html: content }}/>
                 </Text>
               </Card>
             </Box>
