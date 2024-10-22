@@ -5,7 +5,8 @@ import { useRef, useState } from 'react';
 const key = import.meta.env.VITE_TINY_APIKEY
 
 export default function TinyEditor() {
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState('');
+    const [title, setTitle] = useState('');
     const editorRef = useRef(null);
 
 
@@ -19,7 +20,7 @@ export default function TinyEditor() {
                     'Authorization': `Bearer ${localStorage.getItem("token")}`,
                     
                 },
-                body: JSON.stringify({ content })
+                body: JSON.stringify({ title, content })
             })
             if(response.ok) {
                 const parsedData = await  response.json();
@@ -44,6 +45,13 @@ export default function TinyEditor() {
 
     return (
         <div className="flex items-center flex-col">
+             <input
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="mb-4 p-2 border border-gray-300 rounded"
+            />
             <Editor
             apiKey={ key }
             onInit={(_evt, editor) => editorRef.current = editor}
