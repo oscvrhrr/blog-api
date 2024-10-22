@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.post-content {
+    @apply font-sans text-base leading-relaxed;
+}
+
+.post-content h1 {
+    @apply text-2xl font-bold mb-4;
+}
+
+.post-content h2 {
+    @apply text-xl font-bold mb-3;
+}
+
+.post-content h3 {
+    @apply text-lg font-bold mb-2;
+}
+
+.post-content p {
+    @apply mb-4;
+}
+
+.post-content ul, .post-content ol {
+    @apply list-disc list-inside mb-4;
+}
+
+.post-content a {
+    @apply text-blue-500 underline;
+}
+
+.post-content a:hover {
+    @apply text-blue-700;
+}
+
+.post-content img {
+    @apply max-w-full h-auto;
+}
