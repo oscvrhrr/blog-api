@@ -21,16 +21,27 @@ async function retrieveAllPosts(req, res) {
   }
 }
 
-// async function createPost(req, res) {
-//     try {
-//       const user = 
-//       const post = req.body;
-
-//       console.log(data)
-//     } catch (error) {
+async function createPost(req, res) {
+    try {
+      const { content, title } = req.body;
+      const { id } = req.user
+      await db.createQueries.createPost(title, content, id);
+      res.status(201).json("user created");
+    } catch (error) {
         
-//     }
-// }
+    }
+}
+
+async function createNewPost(req, res) {
+  try {
+    const { postId } = req.params
+    const { comment } = req.body
+    await db.createQueries.createComment(comment, Number(postId))
+    res.status(201).json('comment posted')
+  } catch(error) {
+    console.log(error)
+  }
+}
 
 
 
@@ -39,7 +50,8 @@ async function retrieveAllPosts(req, res) {
 
 
 module.exports = {
-    // createPost,
+    createPost,
+    createNewPost,
     retrieveAllPosts,
     retrievePostById,
 }
