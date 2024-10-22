@@ -1,6 +1,6 @@
 // import LoginForm from "../components/LoginForm"
 import LoginForm from "../components/LoginForm"
-import NavBar from "../components/navbar"  
+import NavBar from "../components/NavBar"  
 import RegisterForm from "../components/RegisterForm"
 import Hero from "../components/Hero"
 import { useState } from "react"        
