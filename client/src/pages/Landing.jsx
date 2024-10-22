@@ -3,12 +3,17 @@ import LoginForm from "../components/LoginForm"
 import NavBar from "../components/navbar"  
 import RegisterForm from "../components/RegisterForm"
 import Hero from "../components/Hero"
-import { useState } from "react"                       
+import { useState } from "react"        
+import SortMenu from "../components/SortMenu"            
+import PostContainer from "../components/PostContainer"
+
+
 
 export default function Landing () {
     const [isRegisterActive, setIsRegisterActive] = useState(false)
     const [isLoginActive, setIsLoginActive] = useState(false)
-    
+    const [sortCriteria, setSortCriteria] = useState('');
+
     const openRegisterForm = () => {
       if(!isRegisterActive) {
         setIsRegisterActive(true)
@@ -31,17 +36,20 @@ export default function Landing () {
       isLoginActive? setIsLoginActive(false): null
     }
 
-
+    const handleSort = (criteria) => {
+      setSortCriteria(criteria)
+    }
 
 
     return (
         <>
-          <main className="bg-[#F7F9FF] h-screen">
+          <main className="bg-[#F7F9FF] h-full pb-12">
            <NavBar onLoginClick={ openLoginActive } onRegisterClick={openRegisterForm}/>
            <Hero/>
            { isRegisterActive && <RegisterForm onToggleClick={ closeRegisterFrom }/> }
-           
            { isLoginActive && <LoginForm onToggleClick={ closeLoginActive }/>}
+           <SortMenu  handleSort={ handleSort } />
+           <PostContainer sortCriteria={ sortCriteria } />
           </main>
         </>
     )
