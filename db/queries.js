@@ -4,6 +4,19 @@ const prisma = new PrismaClient();
 
 const createQueries = {
 
+  async createComment(comment, postId) {
+    try {
+      await prisma.comment.create({
+        data: {
+          content: comment,
+          postId
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
   async createUser(newUser) {
     try {
       const { fullname, email, password } = newUser
@@ -19,9 +32,8 @@ const createQueries = {
     }
   },
 
-  async createPost(post) {
+  async createPost(title, content, userId) {
     try {
-      const { title, content } = post;
       await prisma.post.create({
         data: {
           title,
@@ -30,7 +42,7 @@ const createQueries = {
         }
       })
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
@@ -84,6 +96,9 @@ const readQueries = {
       return await prisma.post.findFirst({
         where: {
           id: postId
+        },
+        include: {
+          comments: true
         }
       })
 
