@@ -1,3 +1,5 @@
+
+
 const truncateContent = (content, maxLength) => {
   if (content.length > maxLength) {
       return content.substring(0, maxLength) + '...';
@@ -11,12 +13,21 @@ const formatDate = (date) => {
   return formatDate
 };
 
+const sortPosts = (posts, sortValue) => {
+  const newArr = [...posts]
+  if(sortValue === 'latest') {
+    newArr.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    return newArr
+  } else if (sortValue === 'all') {
+    return newArr.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+  return newArr
+}
 
 
 
 
 
-
-export { truncateContent, formatDate }
+export { truncateContent, formatDate, sortPosts }
 
 
