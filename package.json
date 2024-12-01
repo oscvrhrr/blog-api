@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "node --watch app.js",
+    "build": "prisma migrate deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
