@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { all } = require("../routes/userRouter");
 
 
 async function retrievePostById(req, res) {
@@ -15,7 +16,11 @@ async function retrievePostById(req, res) {
 async function retrieveAllPosts(req, res) {
   try {
     const allPosts = await db.readQueries.getAllPosts();
-    res.json(allPosts);
+    const filteredPosts = allPosts.map(user => {
+      const { userId, ...rest } = user;
+      return rest
+    });
+    res.json(filteredPosts);
   } catch (error) {
     console.log("error fetching posts", error)
   }
@@ -26,19 +31,28 @@ async function createPost(req, res) {
       const { content, title } = req.body;
       const { id } = req.user
       await db.createQueries.createPost(title, content, id);
-      res.status(201).json("user created");
+      res.status(201).json("post created");
     } catch (error) {
-        
+        console.log(error, 'post not created')
     }
 }
 
-async function createNewPost(req, res) {
+async function createNewComment(req, res) {
   try {
     const { postId } = req.params
-    const { comment } = req.body
-    await db.createQueries.createComment(comment, Number(postId))
+    const { name, comment  } = req.body
+
+    await db.createQueries.createComment(name, comment, Number(postId))
     res.status(201).json('comment posted')
   } catch(error) {
+    console.log(error)
+  }
+}
+
+async function deletePost(req, res) {
+  try {
+    
+  } catch (error) {
     console.log(error)
   }
 }
@@ -51,7 +65,8 @@ async function createNewPost(req, res) {
 
 module.exports = {
     createPost,
-    createNewPost,
+    createNewComment,
     retrieveAllPosts,
     retrievePostById,
+    deletePost
 }
