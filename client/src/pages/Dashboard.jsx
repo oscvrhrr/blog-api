@@ -1,18 +1,18 @@
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import PostContainer from "../components/PostContainer";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
 import { UserContext } from "../components/context/UserContext";
+import UserPostContainer from "../components/UserPostContainer";
 
 export default function Dashboard() {
-   const navigate = useNavigate();
-   const { setUser } = useContext(UserContext)
    const [loading, setLoading] = useState(true);
+   const { setUser } = useContext(UserContext)
+   const navigate = useNavigate();
+
 
    const handleLogout = () => {
-      localStorage.removeItem("token")
       navigate("/")
+      localStorage.removeItem("token")
    }
 
    useEffect(() => {
@@ -61,7 +61,7 @@ export default function Dashboard() {
             </button>
            </div>
          </nav>
-         <PostContainer/>
+         <UserPostContainer/>
       </main>
    )
 }
