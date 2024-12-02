@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Box, Inset, Text, Strong, Card, Flex  } from "@radix-ui/themes"
-
+import { Box, Inset, Strong, Card, Flex  } from "@radix-ui/themes"
+import { ChatBubbleIcon } from "@radix-ui/react-icons"
 
 
 export default function Post({title, content, datePosted }) {
@@ -22,11 +22,11 @@ export default function Post({title, content, datePosted }) {
                     }}
                   />
                 </Inset>
-                <Text as="p" size="3">
+
                 <p className="bg-radixblue-600 rounded px-2 py-1">{datePosted}</p>
                 <Strong>{title}</Strong>
-                <div dangerouslySetInnerHTML={{ __html: content }}/>
-                </Text>
+                <p dangerouslySetInnerHTML={{ __html: content }}/>
+                <ChatBubbleIcon/>
               </Card>
             </Box>
           </Flex>
