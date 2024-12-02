@@ -4,11 +4,12 @@ const prisma = new PrismaClient();
 
 const createQueries = {
 
-  async createComment(comment, postId) {
+  async createComment(author, comment, postId) {
     try {
       await prisma.comment.create({
         data: {
-          content: comment,
+          author,
+          comment,
           postId
         }
       })
@@ -20,13 +21,14 @@ const createQueries = {
   async createUser(newUser) {
     try {
       const { fullname, email, password } = newUser
-      await prisma.user.create({
+      const createdUser =  await prisma.user.create({
         data: {
           fullname,
           email,
           password
         }
       })
+      return createdUser
     } catch (error) {
       console.log(error)
     }
