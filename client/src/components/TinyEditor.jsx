@@ -37,12 +37,6 @@ export default function TinyEditor() {
     }
     
 
-
-
-
-
-
-
     return (
         <div className="flex items-center flex-col">
              <input
@@ -65,11 +59,11 @@ export default function TinyEditor() {
             plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'codesample'
             ],
             toolbar: 'undo redo | blocks | ' +
             'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'alignright alignjustify | bullist numlist outdent indent | codesample ' +
             'removeformat | help',
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
