@@ -3,12 +3,13 @@ import * as Form from "@radix-ui/react-form"
 import * as Toggle from "@radix-ui/react-toggle"
 import { Cross1Icon } from "@radix-ui/react-icons"
 import { useState } from "react"
-
+import { useNavigate } from "react-router-dom"
 
 
 
 export default function RegisterForm ( {onToggleClick} ) {
     const [inputValues, setInputValues] = useState({});
+    const navigate = useNavigate()
 
     const handleRegisterInputs = (event) => {
         const { name, value } = event.target;
@@ -18,7 +19,7 @@ export default function RegisterForm ( {onToggleClick} ) {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        const endpoint = 'http://localhost:4001/users';
+        const endpoint = 'http://localhost:4001/signup';
         try {
           const response = await fetch(endpoint, {
             method: 'POST',
@@ -29,8 +30,11 @@ export default function RegisterForm ( {onToggleClick} ) {
             body: JSON.stringify(inputValues)
           });
           if(response.ok) {
-            const data = response.json();
-            console.log(data)
+            const data = await response.json();
+            if(data) {
+                localStorage.setItem("token", data.token);
+                navigate("/dashboard")
+            }
           }
         } catch (error) {
           console.log('error sending post req', error)
