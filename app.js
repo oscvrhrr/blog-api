@@ -1,27 +1,30 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors")
-const passport = require("./auth/passportConfig")
-const jwt = require("jsonwebtoken")
+const cors = require("cors");
+const passport = require("./auth/passportConfig");
+const jwt = require("jsonwebtoken");
 
 
 const app = express();
 const userRouter = require("./routes/userRouter");
 const postRouter = require("./routes/postRouter");
+const userContoller = require("./controllers/userContoller");
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-app.use(cors())
+app.use(cors());
 
 
 app.post("/login", passport.authenticate('local', { session: false }), (req, res) => {
-    const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '2hr'});
+    const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '2hr' });
     res.json({ token })
 })
 
+app.post("/signup", userContoller.createUser);
 
-app.get("/user", passport.authenticate('jwt', { session: false}), (req, res) => {
+
+app.get("/user", passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json(req.user)
 });
 
