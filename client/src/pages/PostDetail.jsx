@@ -3,11 +3,15 @@ import { useParams } from "react-router-dom";
 import { Avatar, Heading } from "@radix-ui/themes";
 import { Blockquote } from "@radix-ui/themes";
 import Comment from "../components/Comment";
+import CodeBlock from "../components/CodeBlock";
+import { formatDate } from "../lib/helperFunctions";
+import { Text } from "@radix-ui/themes";
 
 
 export default function PostDetail () {
     const [post, setPost] = useState();
     const [fetchedComments, setFetchedComments] = useState(); 
+
     
     const { postId } = useParams()
 
@@ -51,9 +55,8 @@ export default function PostDetail () {
                             radius="full"
                         />
                 <div  className="flex-grow mb-4">
-                <div className="post-content"
-                    dangerouslySetInnerHTML={{ __html: post.content }} 
-                />
+                    <CodeBlock code={ post.content }/>
+                
                 </div>
                 <Comment fetchPost={ fetchPost } />
             </aside>
@@ -63,7 +66,9 @@ export default function PostDetail () {
                 {
                     fetchedComments.map((comment, index) => (
                         <Blockquote className="mx-auto rounded my-2 px-2 py-1 bg-white border border-s-radixblack-700 w-3/4" key={index}>
-                            {comment.content}
+                            <Text weight="bold">from: {comment.author} on {formatDate(comment.createdAt)}</Text>
+                            <p>{comment.comment}</p>
+                            
                         </Blockquote>
                     ))
                 }
