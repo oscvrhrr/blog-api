@@ -2,7 +2,7 @@ const passport = require("../auth/passportConfig")
 const Router = require("express");
 
 
-const { createPost, createNewPost, retrieveAllPosts, retrievePostById } = require("../controllers/postController")
+const { createPost, createNewComment, retrieveAllPosts, retrievePostById, deletePost } = require("../controllers/postController")
 
 const postRouter = Router();
 
@@ -15,9 +15,9 @@ postRouter.post(("/"), passport.authenticate('jwt', { session: false }), createP
 
 postRouter.get(("/:postId"), retrievePostById);
 
-// postRouter.delete(("/:postId"), deletePost);
+postRouter.delete(("/:postId"), passport.authenticate('jwt', { session: false }), deletePost);
 
-postRouter.post(("/:postId/comment"), createNewPost)
+postRouter.post(("/:postId/comment"), createNewComment)
 
 
 
