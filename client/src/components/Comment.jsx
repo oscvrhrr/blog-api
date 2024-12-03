@@ -29,7 +29,7 @@ export default function Comment ( { fetchPost }) {
         }
 
         try {
-          const response = await fetch(`http://localhost:4001/posts/${postId}/comment`, {
+          const response = await fetch(`${import.meta.env.VITE_BASE_URL}posts/${postId}/comment`, {
               method: "POST",
               mode: "cors",
               headers: {

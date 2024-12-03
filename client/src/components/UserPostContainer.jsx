@@ -14,7 +14,7 @@ export default function UserPostContainer () {
 
   useEffect(() => {
     const fetchPosts = async() => {
-        const endpoint = `http://localhost:4001/users/${user.id}/posts`;
+        const endpoint = `${import.meta.env.VITE_BASE_URL}users/${user.id}/posts`;
         const token = localStorage.getItem("token");
         try {
          const response = await fetch(endpoint, {

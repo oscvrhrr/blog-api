@@ -7,14 +7,14 @@ import CodeBlock from "../components/CodeBlock";
 import { formatDate } from "../lib/helperFunctions";
 import { Text } from "@radix-ui/themes";
 
+
 export default function PostDetail () {
     const [post, setPost] = useState();
     const [fetchedComments, setFetchedComments] = useState(); 
 
     
     const { postId } = useParams()
-
-    const endpoint = `http://localhost:4001/posts/${postId}`;
+    const endpoint = `${import.meta.env.VITE_BASE_URL}posts/${postId}`;
       const fetchPost = async() => {
         try {
             const response = await fetch(endpoint, {

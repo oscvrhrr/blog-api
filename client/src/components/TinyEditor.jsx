@@ -12,7 +12,7 @@ export default function TinyEditor() {
 
     const createNewPost = async() => {
         try {
-            const response = await fetch('http://localhost:4001/posts', {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}posts`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

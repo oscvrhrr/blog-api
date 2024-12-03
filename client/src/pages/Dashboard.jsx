@@ -18,7 +18,7 @@ export default function Dashboard() {
    useEffect(() => {
       const fetchUserData = async() => {
         const token = localStorage.getItem("token")
-        const endpoint = 'http://localhost:4001/user';
+        const endpoint = `${import.meta.env.VITE_BASE_URL}user`;
         try {
             const response = await fetch(endpoint, {
             method: 'GET',

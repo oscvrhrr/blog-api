@@ -12,7 +12,7 @@ export default function PostContainer ({ sortCriteria }) {
 
   useEffect(() => {
     const fetchPosts = async() => {
-        const endpoint = `http://localhost:4001/posts`;
+        const endpoint = `${import.meta.env.VITE_BASE_URL}posts`;
         const token = localStorage.getItem("token");
         try {
          const response = await fetch(endpoint, {
