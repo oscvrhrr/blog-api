@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Avatar, Heading } from "@radix-ui/themes";
 import { Blockquote } from "@radix-ui/themes";
 import Comment from "../components/Comment";
-import CodeBlock from "../components/CodeBlock";
+import CodeBlock from "../components/Codeblock";
 import { formatDate } from "../lib/helperFunctions";
 import { Text } from "@radix-ui/themes";
 
