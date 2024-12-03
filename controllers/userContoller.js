@@ -1,12 +1,14 @@
 const db = require("../db/queries");
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
 
 async function createUser(req, res) {
   try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
     const createdUser =  await db.createQueries.createUser(newUser = {
       fullname: req.body.fullname,
       email: req.body.email,
-      password: req.body.password
+      password: hashedPassword
     });
     const token = jwt.sign({ id: createdUser.id }, process.env.JWT_SECRET, { expiresIn: "2hr" })
     res.status(201).json({ token })
