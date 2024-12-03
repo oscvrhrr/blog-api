@@ -7,7 +7,6 @@ import CodeBlock from "../components/CodeBlock";
 import { formatDate } from "../lib/helperFunctions";
 import { Text } from "@radix-ui/themes";
 
-
 export default function PostDetail () {
     const [post, setPost] = useState();
     const [fetchedComments, setFetchedComments] = useState(); 
@@ -43,7 +42,7 @@ export default function PostDetail () {
 
     if (!post) {
         return <div>Loading...</div>
-      }
+    }
 
 
     return (
@@ -55,14 +54,12 @@ export default function PostDetail () {
                             radius="full"
                         />
                 <div  className="flex-grow mb-4">
-                    <CodeBlock code={ post.content }/>
-                
+                    <CodeBlock code={ post.content }/> 
                 </div>
                 <Comment fetchPost={ fetchPost } />
             </aside>
             <section>
             <Heading className="w-3/4 mx-auto block mt-10">Comments ({fetchedComments.length})</Heading>
-
                 {
                     fetchedComments.map((comment, index) => (
                         <Blockquote className="mx-auto rounded my-2 px-2 py-1 bg-white border border-s-radixblack-700 w-3/4" key={index}>
@@ -72,9 +69,6 @@ export default function PostDetail () {
                         </Blockquote>
                     ))
                 }
-
-
-
             </section>
        </main>
     )

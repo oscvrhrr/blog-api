@@ -5,6 +5,7 @@ import { truncateContent, formatDate, sortPosts } from "../lib/helperFunctions"
 import { Link } from "react-router-dom"
 import Post from "./Post"
 
+
 export default function PostContainer ({ sortCriteria }) {
   const [posts, setPosts] = useState([]);
   
@@ -35,6 +36,7 @@ export default function PostContainer ({ sortCriteria }) {
   }, [sortCriteria]);
 
   
+  
 
     return (
         <>
@@ -42,10 +44,12 @@ export default function PostContainer ({ sortCriteria }) {
             {
                 posts.map((post, index) => (
                    <Link key={index} to={`/postdetail/${post.id}`}>
+                    
                     <Post key={index}
                       title={truncateContent(post.title, 23)}
-                      content={truncateContent(post.content, 100)}
+                      content={truncateContent(post.content, 80)}
                       datePosted={formatDate(post.createdAt)}
+                      comments={post.comments.length}
                     />
                    </Link>
                 ))
