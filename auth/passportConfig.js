@@ -4,6 +4,7 @@ const LocalStrategy = require("passport-local");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const { prisma } = require("../db/queries");
+const bcrypt = require("bcryptjs")
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -21,10 +22,10 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
+      const match = await bcrypt.compare(password, user.password)
+      if (!match) {
         return done(null, false, { message: "Incorrect password" });
       }
-
         return done(null, user);
     } catch(err) {
       return done(err);
