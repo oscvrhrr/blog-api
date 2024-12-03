@@ -75,7 +75,11 @@ const readQueries = {
 
   async getAllPosts() {
     try {
-      return await prisma.post.findMany()
+      return await prisma.post.findMany({
+        include: {
+          comments: true
+        }
+      })
     } catch (error) {
       console.log( 'Error fetching all posts', error)
     }
