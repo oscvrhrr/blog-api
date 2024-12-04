@@ -8,19 +8,15 @@ const postRouter = Router();
 
 
 
+postRouter.post(("/"), passport.authenticate('jwt', { session: false }), createPost);
+
+postRouter.post(("/:postId/comments"), createNewComment)
 
 postRouter.get(("/"), retrieveAllPosts);
 
-postRouter.post(("/"), passport.authenticate('jwt', { session: false }), createPost);
-
 postRouter.get(("/:postId"), retrievePostById);
 
-postRouter.delete(("/:postId"), passport.authenticate('jwt', { session: false }), deletePost);
-
-postRouter.post(("/:postId/comment"), createNewComment)
-
-
-
+postRouter.delete(("/:postId/"), passport.authenticate('jwt', { session: false }), deletePost);
 
 
 

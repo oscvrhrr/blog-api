@@ -16,27 +16,16 @@ app.use(express.urlencoded({ extended: true}));
 app.use(cors());
 
 
-app.post("/login", passport.authenticate('local', { session: false }), (req, res) => {
-    const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '2hr' });
-    res.json({ token })
+app.post("/auth/login", passport.authenticate('local', { session: false }), (req, res) => {
+  const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: '2hr' });
+  res.json({ token })
 })
 
-app.post("/signup", userContoller.createUser);
-
-
-app.get("/user", passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.json(req.user)
-});
+app.post("/auth/signup", userContoller.createUser);
 
 app.use("/users", passport.authenticate('jwt', { session: false }), userRouter);
+
 app.use("/posts", postRouter);
-
-
-
-
-
-
-
 
 
 app.listen(process.env.PORT, () => {

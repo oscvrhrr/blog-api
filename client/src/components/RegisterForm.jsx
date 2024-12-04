@@ -19,7 +19,7 @@ export default function RegisterForm ( {onToggleClick} ) {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        const endpoint = `${import.meta.env.VITE_BASE_URL}signup`;
+        const endpoint = `${import.meta.env.VITE_BASE_URL}auth/signup`;
         try {
           const response = await fetch(endpoint, {
             method: 'POST',

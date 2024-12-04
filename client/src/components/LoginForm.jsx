@@ -18,7 +18,7 @@ export default function LoginForm ({ onToggleClick }) {
 
     const handleLogin = async(event) => {
       event.preventDefault();
-      const endpoint = `${import.meta.env.VITE_BASE_URL}login`;
+      const endpoint = `${import.meta.env.VITE_BASE_URL}auth/login`;
       try {
         const response = await fetch(endpoint, {
           method: 'POST',
