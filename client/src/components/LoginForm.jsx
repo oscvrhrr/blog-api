@@ -56,9 +56,9 @@ export default function LoginForm ({ onToggleClick }) {
               <Form.Label>Email</Form.Label>
               <Form.Control onChange={ handleInputs } value={ inputValues.email || '' } placeholder="Enter your email" className="box-border inline-flex h-[30px] w-full appearance-none items-center justify-center rounded bg-blackA2 px-2.5 text-[15px] leading-none text-black shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_1.5px_blue]" required/>
             </Form.Field>
-            <Form.Field name="password">
+            <Form.Field name="password"  >
               <Form.Label>Password</Form.Label>
-              <Form.Control onChange={ handleInputs } value={ inputValues.password || ''} placeholder="Enter your password" className="box-border inline-flex h-[30px] w-full appearance-none items-center justify-center rounded bg-blackA2 px-2.5 text-[15px] leading-none text-black shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_1.5px_blue]" required/>
+              <Form.Control type="password" onChange={ handleInputs } value={ inputValues.password || ''} placeholder="Enter your password" className="box-border inline-flex h-[30px] w-full appearance-none items-center justify-center rounded bg-blackA2 px-2.5 text-[15px] leading-none text-black shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_1.5px_blue]" required/>
             </Form.Field>
             <Form.Submit className="mt-2.5 box-border inline-flex h-[35px] w-full items-center justify-center rounded text-white bg-radixblue-900 hover:bg-radixblue-1000">Log in</Form.Submit>
           </Form.Root>
